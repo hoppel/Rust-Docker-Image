@@ -3,13 +3,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+- master
 - staging
 
 variables:
-  ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
     tag: 'latest'
-  ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+  ${{ if ne(variables['Build.SourceBranchName'], 'master') }}:
     tag: $(Build.SourceBranchName)
 
 resources:
