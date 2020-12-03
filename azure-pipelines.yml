@@ -1,0 +1,33 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+- staging
+
+variables:
+  ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+    tag: 'latest'
+  ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+    tag: $(Build.SourceBranchName)
+
+resources:
+- repo: self
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Docker Hub connection'
+        repository: 'hoppel/rust_mapgen'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
