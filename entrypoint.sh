@@ -10,7 +10,7 @@ if [ ! -z "$PATCH_ZIP" ]; then
 fi
 
 if [ ! -z "$RUSTEXPOSER_ZIP" ]; then
-    curl -sSL $PATCH_ZIP > /tmp/rustExposer.zip
+    curl -sSL $RUSTEXPOSER_ZIP > /tmp/rustExposer.zip
     unzip -o -q /tmp/rustExposer.zip -d /home/steam
     rm /tmp/rustExposer.zip
     echo "Installed RustExposer"
