@@ -9,4 +9,13 @@ if [ ! -z "$PATCH_ZIP" ]; then
     echo "Updated Harmony Patches"
 fi
 
+if [ ! -z "$RUSTEXPOSER_ZIP" ]; then
+    curl -sSL $PATCH_ZIP > /tmp/rustExposer.zip
+    unzip -o -q /tmp/rustExposer.zip -d /home/steam
+    rm /tmp/rustExposer.zip
+    echo "Installed RustExposer"
+    ./RustExposer $@
+    echo "Finished exposing"
+fi
+
 ./RustDedicated $@
