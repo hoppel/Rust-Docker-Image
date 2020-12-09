@@ -14,6 +14,7 @@ if [ ! -z "$RUSTEXPOSER_ZIP" ]; then
     unzip -o -q /tmp/rustExposer.zip -d /home/steam
     rm /tmp/rustExposer.zip
     echo "Installed RustExposer"
+    chmod 777 RustExposer
     ./RustExposer $@
     echo "Finished exposing"
 fi
