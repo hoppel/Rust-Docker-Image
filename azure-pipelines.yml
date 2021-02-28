@@ -3,8 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
-- staging
+- '*'
 
 variables:
   ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
